@@ -15,13 +15,13 @@ RUN apt-get install -y oracle-java8-set-default
 
 # Download ELK
 RUN wget https://download.elasticsearch.org/logstash/logstash/logstash-1.4.2.tar.gz
-RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.2.tar.gz
-RUN wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.0-beta3.tar.gz
+RUN wget https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-1.4.4.tar.gz
+RUN wget https://download.elasticsearch.org/kibana/kibana/kibana-4.0.1-linux-x64.tar.gz
 
 # Extract files
 RUN tar -zxf logstash-1.4.2.tar.gz
-RUN tar -zxf elasticsearch-1.4.2.tar.gz
-RUN tar -zxf kibana-4.0.0-beta3.tar.gz
+RUN tar -zxf elasticsearch-1.4.4.tar.gz
+RUN tar -zxf kibana-4.0.1-linux-x64.tar.gz
 
 # Copy supervisor configuration
 ADD conf/supervisor_kibana.conf /etc/supervisor/conf.d/kibana.conf
@@ -32,5 +32,6 @@ ADD conf/supervisor_logstash.conf /etc/supervisor/conf.d/logstash.conf
 ADD conf/logstash_simple.conf /opt/logstash/conf/logstash_simple.conf
 
 EXPOSE 5601
+EXPOSE 1555
 
 CMD [ "/usr/bin/supervisord", "-n", "-c", "/etc/supervisor/supervisord.conf" ]
