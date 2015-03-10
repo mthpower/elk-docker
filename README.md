@@ -18,7 +18,7 @@ Run
 In order to run the image:
 
 ```
-docker run -d -p 5000:5601 --name elk -v /path/access-logs:/var/log/access elk
+docker run -p 5000:5601 -p 1555:1555 --name elk elk
 ```
 
 This will export to your local port 5000 kibana, so you will be able to access to kibana by:
@@ -27,8 +27,7 @@ This will export to your local port 5000 kibana, so you will be able to access t
 http://localhost:5000
 ```
 
-The ```/path/access-logs``` is the dir where the access logs are being added. This volume is mounted on the 
-containter logstash processes the logs from it.
+Logs can be added by piping them over TCP on port 1555. For python, try python-logstash
 
 TODO
 ----
